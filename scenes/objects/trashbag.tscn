@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://5m6dxq0fg1va"]
+
+[ext_resource type="Texture2D" uid="uid://c7m74e3n00j1q" path="res://graphics/objects/trashbag.png" id="1_xevbw"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0qmwb"]
+radius = 15.0
+height = 66.0
+
+[node name="Trashbag" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 15
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = ExtResource("1_xevbw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_0qmwb")

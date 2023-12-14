@@ -1,0 +1,148 @@
+[gd_scene load_steps=7 format=3 uid="uid://bnn76w0r4a2wq"]
+
+[ext_resource type="Script" path="res://scenes/user_interface/ending.gd" id="1_pylkx"]
+[ext_resource type="Texture2D" uid="uid://d1l8ai4n7ohlt" path="res://graphics/images/ending.png" id="2_xr43k"]
+[ext_resource type="Texture2D" uid="uid://d35eaj3dlolxn" path="res://graphics/images/beanie-stretch.jpg" id="3_r60ci"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1idhj"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_so4nh"]
+bg_color = Color(0.188235, 0.188235, 0.188235, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.25098, 0.25098, 0.25098, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ry4yq"]
+bg_color = Color(0.188235, 0.188235, 0.188235, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.25098, 0.25098, 0.25098, 1)
+
+[node name="Ending" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pylkx")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Image" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.5
+anchor_right = 0.1
+anchor_bottom = 0.5
+offset_top = -240.0
+offset_right = 636.0
+offset_bottom = 240.0
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Image"]
+layout_mode = 2
+texture = ExtResource("2_xr43k")
+stretch_mode = 4
+
+[node name="TextBox" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.9
+anchor_top = 0.142
+anchor_right = 0.9
+anchor_bottom = 0.142
+offset_left = -296.0
+offset_right = 47.0
+offset_bottom = 148.0
+grow_horizontal = 0
+
+[node name="Label" type="Label" parent="TextBox"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 60
+text = "Beanie is defeated!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Menu" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.754
+anchor_top = 0.751
+anchor_right = 0.865
+anchor_bottom = 0.751
+offset_left = -19.12
+offset_top = -7.84003
+offset_right = 8.80005
+offset_bottom = 18.32
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Panel" type="Panel" parent="Menu"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1idhj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.029
+anchor_top = 0.85
+anchor_right = 0.965
+anchor_bottom = 0.925
+offset_left = 0.0699997
+offset_top = 0.0299993
+offset_right = -0.0500031
+offset_bottom = 16.47
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 6
+
+[node name="MainMenuButton" type="Button" parent="Menu/Panel/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../ExitButton")
+focus_neighbor_bottom = NodePath("../ExitButton")
+theme_override_styles/normal = SubResource("StyleBoxFlat_so4nh")
+text = "Main Menu"
+
+[node name="ExitButton" type="Button" parent="Menu/Panel/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../MainMenuButton")
+focus_neighbor_bottom = NodePath("../MainMenuButton")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ry4yq")
+text = "Exit Game"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 899.0
+offset_top = 307.0
+offset_right = 3459.0
+offset_bottom = 2137.0
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_r60ci")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 908.0
+offset_top = 464.0
+offset_right = 1044.0
+offset_bottom = 490.0
+text = "literally beanie rn"
+
+[connection signal="pressed" from="Menu/Panel/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="Menu/Panel/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

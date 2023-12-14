@@ -1,0 +1,84 @@
+[gd_scene load_steps=4 format=3 uid="uid://biuqdghvqhus8"]
+
+[ext_resource type="Script" path="res://scenes/user_interface/death_screen.gd" id="1_be1xt"]
+[ext_resource type="Texture2D" uid="uid://s8dum35to6fj" path="res://graphics/images/gameoverlyza.jpg" id="2_y70q2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xa6ey"]
+bg_color = Color(0.101961, 0.101961, 0.101961, 1)
+
+[node name="DeathScreen" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_be1xt")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 465.0
+offset_top = 56.0
+offset_right = 915.0
+offset_bottom = 656.0
+scale = Vector2(0.75, 0.75)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_y70q2")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+offset_left = 550.4
+offset_top = 581.14
+offset_right = 717.4
+offset_bottom = 581.14
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xa6ey")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+offset_top = -49.5
+offset_right = 167.0
+offset_bottom = 193.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "== YOU DIED =="
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RetryButton" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../ExitGameButton")
+focus_neighbor_bottom = NodePath("../MainMenuButton")
+text = "Retry"
+
+[node name="MainMenuButton" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../RetryButton")
+focus_neighbor_bottom = NodePath("../ExitGameButton")
+text = "Main Menu"
+
+[node name="ExitGameButton" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../MainMenuButton")
+focus_neighbor_bottom = NodePath(".")
+text = "Exit Game"
+
+[connection signal="pressed" from="Panel/VBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/ExitGameButton" to="." method="_on_exit_game_button_pressed"]

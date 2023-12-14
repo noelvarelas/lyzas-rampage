@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bq1fsn73fe1xe"]
+
+[ext_resource type="Texture2D" uid="uid://401mdr0jyc2c" path="res://graphics/objects/trashbin.png" id="1_yamie"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_43jqa"]
+radius = 29.0
+height = 64.0
+
+[node name="Trashbin" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 15
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4, -20)
+texture = ExtResource("1_yamie")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_43jqa")

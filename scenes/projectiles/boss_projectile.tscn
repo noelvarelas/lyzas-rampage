@@ -1,0 +1,100 @@
+[gd_scene load_steps=10 format=3 uid="uid://bfspqbklifgp8"]
+
+[ext_resource type="Script" path="res://scenes/projectiles/boss_projectile.gd" id="1_0f7f6"]
+[ext_resource type="Texture2D" uid="uid://bymhowjv3ut6q" path="res://graphics/barf/barf1.png" id="2_bhrbe"]
+[ext_resource type="Texture2D" uid="uid://bnkg3kygptmp2" path="res://graphics/barf/barf2.png" id="3_0b2st"]
+[ext_resource type="AudioStream" uid="uid://bj4t7mx5d4gsv" path="res://audio/beanie/attack.wav" id="4_fb4dh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yc54o"]
+size = Vector2(50, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bay7g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_bhrbe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0b2st")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_rduhx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_trvqg"]
+resource_name = "idle"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_why6e"]
+_data = {
+"RESET": SubResource("Animation_rduhx"),
+"idle": SubResource("Animation_trvqg")
+}
+
+[node name="boss_projectile" type="Area2D"]
+collision_layer = 2
+collision_mask = 17
+script = ExtResource("1_0f7f6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 16)
+shape = SubResource("RectangleShape2D_yc54o")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-3.385, 2.25)
+rotation = 1.5708
+sprite_frames = SubResource("SpriteFrames_bay7g")
+
+[node name="ExpireTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_fb4dh")
+volume_db = -3.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_why6e")
+}
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="CollisionSwap" type="Timer" parent="Timers"]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="ExpireTimer" to="." method="_on_expire_timer_timeout"]
+[connection signal="timeout" from="Timers/CollisionSwap" to="." method="_on_collision_swap_timeout"]

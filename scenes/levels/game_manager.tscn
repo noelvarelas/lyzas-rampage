@@ -1,0 +1,479 @@
+[gd_scene load_steps=26 format=3 uid="uid://cxra24nr6gnht"]
+
+[ext_resource type="Script" path="res://scenes/levels/game_manager.gd" id="1_t44kl"]
+[ext_resource type="PackedScene" uid="uid://bd4f6qivv8eiw" path="res://scenes/levels/level.tscn" id="2_ityd6"]
+[ext_resource type="PackedScene" uid="uid://bnwu7bhnmjc64" path="res://scenes/user_interface/pause_menu.tscn" id="3_fpmw8"]
+[ext_resource type="Texture2D" uid="uid://4frcg5qwi4w" path="res://graphics/ui/health.png" id="3_wr3rc"]
+[ext_resource type="Texture2D" uid="uid://dqh8h45fj7yeh" path="res://graphics/ui/health2.png" id="4_1wdk4"]
+[ext_resource type="Texture2D" uid="uid://b8bmmxthkd68v" path="res://graphics/ui/go.png" id="4_6o7jn"]
+[ext_resource type="Texture2D" uid="uid://bv11lm1mkw2x7" path="res://graphics/images/intro.jpg" id="6_l5nem"]
+[ext_resource type="Texture2D" uid="uid://bdnkx4x0oovhl" path="res://graphics/images/lyza-art.png" id="7_1df8i"]
+[ext_resource type="Texture2D" uid="uid://dt4ugxkalshtu" path="res://graphics/images/beanie-art.png" id="8_ocu40"]
+[ext_resource type="AudioStream" uid="uid://bkkm4d2rtomu7" path="res://audio/music/background_music.ogg" id="10_h3u3l"]
+[ext_resource type="AudioStream" uid="uid://bar5v2uabis7j" path="res://audio/sfx/go.wav" id="12_83bkn"]
+[ext_resource type="AudioStream" uid="uid://bby8auuos0b1" path="res://audio/music/boss_music.ogg" id="12_eqpr7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bq7r1"]
+bg_color = Color(0.25098, 0.25098, 0.25098, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8jbhf"]
+bg_color = Color(0.501961, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1wufr"]
+bg_color = Color(0.25098, 0.25098, 0.25098, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eubev"]
+bg_color = Color(0.501961, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l2b0d"]
+bg_color = Color(0.12549, 0.12549, 0.12549, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tccno"]
+bg_color = Color(0.12549, 0.12549, 0.12549, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[sub_resource type="Animation" id="Animation_poxkd"]
+resource_name = "intro_fade"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Intro2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_uq1w0"]
+resource_name = "intro_next"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Intro1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_122kt"]
+_data = {
+"intro_fade": SubResource("Animation_poxkd"),
+"intro_next": SubResource("Animation_uq1w0")
+}
+
+[sub_resource type="Animation" id="Animation_8msuo"]
+resource_name = "heal_tip_blink"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control/HealTip:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_inx7g"]
+_data = {
+"heal_tip_blink": SubResource("Animation_8msuo")
+}
+
+[sub_resource type="Animation" id="Animation_i1lp7"]
+resource_name = "go_blink"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control/Go:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false, true, false]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GoBlink/AudioStreamPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [0.0],
+"method": &"play"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oh70e"]
+_data = {
+"go_blink": SubResource("Animation_i1lp7")
+}
+
+[node name="GameManager" type="Node"]
+process_mode = 3
+script = ExtResource("1_t44kl")
+
+[node name="Level" parent="." instance=ExtResource("2_ityd6")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 2
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HealthBar" type="HBoxContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025
+anchor_top = 0.025
+anchor_right = 0.2
+anchor_bottom = 0.1
+scale = Vector2(1.5, 1.5)
+
+[node name="HealthHi" type="TextureRect" parent="CanvasLayer/Control/HealthBar"]
+texture_filter = 2
+layout_mode = 2
+texture = ExtResource("3_wr3rc")
+expand_mode = 2
+
+[node name="HealthLo" type="TextureRect" parent="CanvasLayer/Control/HealthBar"]
+visible = false
+texture_filter = 2
+layout_mode = 2
+texture = ExtResource("4_1wdk4")
+expand_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Control/HealthBar"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.352941, 0.658824, 0.909804, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_bq7r1")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8jbhf")
+max_value = 10.0
+step = 1.0
+value = 10.0
+show_percentage = false
+
+[node name="HealTip" type="RichTextLabel" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 81.0
+offset_right = 368.0
+offset_bottom = 104.0
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+bbcode_enabled = true
+text = "[center]HEAL BY DODGING ATTACKS![/center]"
+fit_content = true
+
+[node name="Go" type="TextureRect" parent="CanvasLayer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_top = 20.0
+offset_right = -80.0
+offset_bottom = 128.0
+grow_horizontal = 0
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_6o7jn")
+
+[node name="BossName" type="RichTextLabel" parent="CanvasLayer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 674.0
+offset_right = -45.9996
+offset_bottom = 700.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "Beanie the Defiler"
+
+[node name="BossHealthBar" type="ProgressBar" parent="CanvasLayer/Control"]
+visible = false
+custom_minimum_size = Vector2(400, 5)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -25.425
+offset_right = 200.0
+offset_bottom = -10.4249
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_1wufr")
+theme_override_styles/fill = SubResource("StyleBoxFlat_eubev")
+max_value = 3.0
+value = 3.0
+show_percentage = false
+
+[node name="Intro" type="Node" parent="CanvasLayer"]
+
+[node name="Intro2" type="Control" parent="CanvasLayer/Intro"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Intro/Intro2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Intro/Intro2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75
+anchor_top = 0.1
+anchor_right = 0.75
+anchor_bottom = 0.1
+offset_left = -633.0
+offset_right = 633.0
+offset_bottom = 688.0
+grow_horizontal = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_l5nem")
+expand_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Intro/Intro2"]
+custom_minimum_size = Vector2(600, 200)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.76
+anchor_right = 0.5
+anchor_bottom = 0.76
+offset_left = -300.0
+offset_top = -100.0
+offset_right = 300.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 32
+text = "One day, Beanie finally made his move and attacked Colin! Now Lyza must get revenge by hopping on her robot vacuum and finding Beanie!"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Intro/Intro2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.96
+anchor_right = 0.5
+anchor_bottom = 0.96
+offset_left = -35.0
+offset_top = -40.0
+offset_right = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Button" type="Button" parent="CanvasLayer/Intro/Intro2/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_l2b0d")
+text = " Start "
+
+[node name="Intro1" type="Control" parent="CanvasLayer/Intro"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Intro/Intro1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Intro/Intro1"]
+custom_minimum_size = Vector2(600, 200)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.35
+anchor_right = 0.5
+anchor_bottom = 0.65
+offset_left = -300.0
+offset_top = -100.0
+offset_right = 300.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 32
+text = "Meet Lyza and Beanie, two cats who live with their owner, Colin.
+
+Lyza is a good cat that is grateful for her food and shelter.
+
+Beanie is a greedy cat, who wants ALL of the food and ALL of the power. And he wants it NOW."
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Intro/Intro1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.778
+anchor_right = 0.05
+anchor_bottom = 0.778
+offset_top = -32.0
+offset_right = 192.0
+offset_bottom = 160.0
+grow_vertical = 2
+texture = ExtResource("7_1df8i")
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Intro/Intro1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.85
+anchor_top = 0.79
+anchor_right = 0.85
+anchor_bottom = 0.79
+offset_left = -80.0
+offset_top = -40.0
+offset_right = 112.0
+offset_bottom = 152.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("8_ocu40")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Intro/Intro1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.96
+anchor_right = 0.5
+anchor_bottom = 0.96
+offset_left = -35.0
+offset_top = -40.0
+offset_right = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Button" type="Button" parent="CanvasLayer/Intro/Intro1/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_tccno")
+text = " Next "
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("3_fpmw8")]
+visible = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../CanvasLayer/Intro")
+libraries = {
+"": SubResource("AnimationLibrary_122kt")
+}
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+autoplay = "heal_tip_blink"
+libraries = {
+"": SubResource("AnimationLibrary_inx7g")
+}
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_h3u3l")
+volume_db = -9.0
+autoplay = true
+bus = &"Music"
+
+[node name="MusicBoss" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_eqpr7")
+volume_db = -6.0
+bus = &"Music"
+
+[node name="GoBlink" type="Node" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GoBlink"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_oh70e")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GoBlink"]
+stream = ExtResource("12_83bkn")
+volume_db = -9.0
+
+[connection signal="screen_just_cleared" from="Level" to="." method="_on_level_screen_just_cleared"]
+[connection signal="boss_fight_started" from="Level/EnemiesScreen4/Boss" to="." method="_on_boss_boss_fight_started"]
+
+[editable path="Level"]

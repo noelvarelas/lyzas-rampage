@@ -1,0 +1,270 @@
+[gd_scene load_steps=18 format=3 uid="uid://bd4f6qivv8eiw"]
+
+[ext_resource type="PackedScene" uid="uid://ditwh6y3iijog" path="res://scenes/player/player.tscn" id="1_df7ow"]
+[ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_ocrp6"]
+[ext_resource type="Texture2D" uid="uid://udllhru0esgf" path="res://graphics/background/background.png" id="2_04sip"]
+[ext_resource type="PackedScene" uid="uid://ch51iw6uuiasj" path="res://scenes/objects/car.tscn" id="2_vaofa"]
+[ext_resource type="PackedScene" uid="uid://c8t4m5k0r84r3" path="res://scenes/enemies/melee_enemy.tscn" id="2_xau8b"]
+[ext_resource type="Texture2D" uid="uid://dvsgq67fc4fwn" path="res://graphics/objects/cone.png" id="3_ulfnm"]
+[ext_resource type="PackedScene" uid="uid://di1wykxo5iyjt" path="res://scenes/enemies/ranged_enemy.tscn" id="4_uvh5w"]
+[ext_resource type="PackedScene" uid="uid://bti546cy24cw4" path="res://scenes/enemies/boss.tscn" id="6_ha3pv"]
+[ext_resource type="PackedScene" uid="uid://5m6dxq0fg1va" path="res://scenes/objects/trashbag.tscn" id="8_gp735"]
+[ext_resource type="PackedScene" uid="uid://ibp205x7vgxb" path="res://scenes/objects/trashbag_pile.tscn" id="9_ug1tx"]
+[ext_resource type="PackedScene" uid="uid://bq1fsn73fe1xe" path="res://scenes/objects/trashbin.tscn" id="10_phlv3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ba0sk"]
+size = Vector2(2560, 216)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_agmep"]
+size = Vector2(2600, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2u058"]
+size = Vector2(20, 360)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p53g1"]
+size = Vector2(5, 144)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y4x1x"]
+size = Vector2(23, 144)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_0htkc"]
+vertices = PackedVector2Array(458, 539, 678, 605, 563, 622, 315, 608, 419, 530, 3463, 521, 3452, 621, 3421, 626, 3040, 612, 2730, 597, 2698, 571, 3422, 513, 1139, 532, 1449, 509, 1495, 530, 1096, 558, 3504, 514, 3544, 491, 4000, 465, 4037, 483, 3482, 627, 3197, 505, 3386, 488, 3156, 525, 1030, 507, 986, 535, 548, 504, 499, 477, 2993, 626, 2962, 649, 1734, 633, 2663, 627, 3991, 436, 3501, 468, 539.079, 717.474, 271, 636, 3518, 647, 5110, 440, 5111, 713, 3482, 666, 2, 718, 6, 437, 151, 436, 167, 472, 2734, 474, 2743, 436, 3465, 462, 4073, 469, 4081, 437, 215, 488, 114, 608, 2490, 436, 2648, 437, 2661, 471, 2464, 469, 1049, 460, 1060, 436, 1653, 436, 1678, 470, 257, 474, 275, 436, 966.005, 436.572, 457, 464, 1759, 468, 1774, 438, 2217, 437, 2238, 470, 214, 648, 155, 636, 157, 582, 213, 569, 270, 583, 366, 506, 3382, 648, 3110, 648, 3081, 625, 3084, 668, 3420, 669, 2146, 599, 2634, 572, 2600, 597, 2117, 619, 2111, 577, 2633, 619, 2082, 626, 497, 531, 1026, 556, 3155, 484, 3421, 469, 1099, 512, 1494, 487, 3045, 504, 1586, 526, 1622, 505, 3086, 485, 1413, 639, 1624, 614, 1585, 637, 1374, 659, 1369, 615, 2996, 668, 1691, 653, 1626, 656, 1335, 670, 2696, 482, 1576, 484, 1714, 483, 3088, 523, 1537, 474, 1061, 500, 1012, 471, 3450, 676, 820, 717, 3039, 677, 2352, 479, 2083, 568, 2669, 564, 3122, 532, 3124, 476, 2700, 618, 977, 458, 1540, 537, 1067, 566, 1326, 607, 1657, 608, 1655, 660, 1285, 660, 1243, 641, 801, 622, 1292, 614, 2052, 618, 2014, 599, 1687, 612, 2051, 579, 414, 474)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 7, 8, 9, 10, 11), PackedInt32Array(12, 13, 14, 15), PackedInt32Array(16, 17, 18, 19, 20), PackedInt32Array(21, 22, 11, 23), PackedInt32Array(24, 25, 26, 27), PackedInt32Array(28, 29, 30, 31), PackedInt32Array(32, 18, 17, 33), PackedInt32Array(3, 2, 34, 35), PackedInt32Array(36, 37, 38, 39), PackedInt32Array(40, 41, 42, 43), PackedInt32Array(44, 45, 32, 46), PackedInt32Array(47, 48, 37), PackedInt32Array(40, 43, 49, 50), PackedInt32Array(51, 52, 53, 54), PackedInt32Array(55, 56, 57, 58), PackedInt32Array(59, 60, 61, 62), PackedInt32Array(63, 64, 65, 66), PackedInt32Array(35, 34, 40, 67), PackedInt32Array(68, 67, 40), PackedInt32Array(50, 68, 40), PackedInt32Array(69, 50, 49), PackedInt32Array(70, 69, 49), PackedInt32Array(71, 70, 49, 59), PackedInt32Array(3, 71, 59, 72, 4), PackedInt32Array(73, 74, 75, 7), PackedInt32Array(76, 74, 73, 77), PackedInt32Array(37, 36, 20, 19), PackedInt32Array(78, 79, 80, 81), PackedInt32Array(79, 78, 82), PackedInt32Array(81, 80, 83, 84), PackedInt32Array(85, 26, 25, 86), PackedInt32Array(22, 21, 87, 88), PackedInt32Array(13, 12, 89, 90), PackedInt32Array(91, 92, 93, 94), PackedInt32Array(95, 96, 97, 98), PackedInt32Array(96, 95, 99), PackedInt32Array(30, 29, 100, 101), PackedInt32Array(98, 97, 102, 103), PackedInt32Array(104, 94, 93, 105, 106), PackedInt32Array(92, 91, 107), PackedInt32Array(108, 90, 89, 109, 110), PackedInt32Array(19, 47, 37), PackedInt32Array(5, 16, 20, 6), PackedInt32Array(111, 39, 38), PackedInt32Array(111, 38, 112, 113), PackedInt32Array(106, 63, 66, 114), PackedInt32Array(79, 82, 115, 116), PackedInt32Array(11, 10, 116, 117), PackedInt32Array(88, 87, 118), PackedInt32Array(110, 55, 58, 108), PackedInt32Array(7, 75, 8), PackedInt32Array(9, 8, 28, 119), PackedInt32Array(54, 53, 104, 114), PackedInt32Array(109, 24, 27, 62, 120, 110), PackedInt32Array(31, 119, 28), PackedInt32Array(83, 31, 30, 84), PackedInt32Array(121, 92, 107, 117, 116, 115), PackedInt32Array(0, 85, 86, 122, 1), PackedInt32Array(32, 33, 46), PackedInt32Array(44, 46, 88, 118), PackedInt32Array(44, 118, 94, 104), PackedInt32Array(76, 77, 111, 113), PackedInt32Array(123, 122, 15, 14, 121, 124, 96), PackedInt32Array(100, 113, 112, 125), PackedInt32Array(125, 101, 100), PackedInt32Array(102, 125, 112, 103), PackedInt32Array(126, 103, 112), PackedInt32Array(127, 126, 112, 128), PackedInt32Array(129, 127, 128), PackedInt32Array(130, 84, 30), PackedInt32Array(131, 130, 30, 132), PackedInt32Array(133, 131, 132), PackedInt32Array(115, 133, 132, 124, 121), PackedInt32Array(96, 99, 123), PackedInt32Array(123, 129, 128, 1, 122), PackedInt32Array(117, 23, 11), PackedInt32Array(134, 72, 59), PackedInt32Array(62, 134, 59), PackedInt32Array(62, 61, 120), PackedInt32Array(105, 108, 58, 106), PackedInt32Array(114, 104, 106)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(6, 437, 151, 436, 167, 472, 215, 488, 257, 474, 275, 436, 966.005, 436.572, 977, 458, 1012, 471, 1049, 460, 1060, 436, 1653, 436, 1678, 470, 1714, 483, 1759, 468, 1774, 438, 2217, 437, 2238, 470, 2352, 479, 2464, 469, 2490, 436, 2648, 437, 2661, 471, 2696, 482, 2734, 474, 2743, 436, 3991, 436, 4000, 465, 4037, 483, 4073, 469, 4081, 437, 5110, 440, 5111, 713, 820, 717, 801, 622, 678, 605, 563, 622, 539.079, 717.474, 2, 718), PackedVector2Array(213, 569, 270, 583, 315, 608, 271, 636, 214, 648, 155, 636, 114, 608, 157, 582), PackedVector2Array(366, 506, 419, 530, 458, 539, 497, 531, 548, 504, 499, 477, 457, 464, 414, 474), PackedVector2Array(1061, 500, 1099, 512, 1139, 532, 1096, 558, 1067, 566, 1026, 556, 986, 535, 1030, 507), PackedVector2Array(1292, 614, 1243, 641, 1285, 660, 1335, 670, 1374, 659, 1413, 639, 1369, 615, 1326, 607), PackedVector2Array(1537, 474, 1494, 487, 1449, 509, 1495, 530, 1540, 537, 1586, 526, 1622, 505, 1576, 484), PackedVector2Array(1657, 608, 1624, 614, 1585, 637, 1626, 656, 1655, 660, 1691, 653, 1734, 633, 1687, 612), PackedVector2Array(2083, 568, 2051, 579, 2014, 599, 2052, 618, 2082, 626, 2117, 619, 2146, 599, 2111, 577), PackedVector2Array(2669, 564, 2634, 572, 2600, 597, 2633, 619, 2663, 627, 2700, 618, 2730, 597, 2698, 571), PackedVector2Array(3040, 612, 2993, 626, 2962, 649, 2996, 668, 3039, 677, 3084, 668, 3110, 648, 3081, 625), PackedVector2Array(3124, 476, 3086, 485, 3045, 504, 3088, 523, 3122, 532, 3156, 525, 3197, 505, 3155, 484), PackedVector2Array(3452, 621, 3421, 626, 3382, 648, 3420, 669, 3450, 676, 3482, 666, 3518, 647, 3482, 627), PackedVector2Array(3465, 462, 3421, 469, 3386, 488, 3422, 513, 3463, 521, 3504, 514, 3544, 491, 3501, 468)])
+
+[node name="Level" type="Node2D"]
+process_mode = 1
+y_sort_enabled = true
+script = ExtResource("1_ocrp6")
+metadata/_edit_horizontal_guides_ = []
+metadata/_edit_vertical_guides_ = [1280.0, 2560.0, 3840.0]
+
+[node name="Background" type="Node2D" parent="."]
+z_index = -1
+
+[node name="Sprite2D" type="Sprite2D" parent="Background"]
+texture = ExtResource("2_04sip")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="Cone" type="Sprite2D" parent="Background"]
+position = Vector2(4444, 449)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_ulfnm")
+
+[node name="Cone2" type="Sprite2D" parent="Background"]
+position = Vector2(4445, 504)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_ulfnm")
+
+[node name="Cone3" type="Sprite2D" parent="Background"]
+position = Vector2(4447, 565)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_ulfnm")
+
+[node name="Cone4" type="Sprite2D" parent="Background"]
+position = Vector2(4446, 623)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_ulfnm")
+
+[node name="Cone5" type="Sprite2D" parent="Background"]
+position = Vector2(4448, 682)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_ulfnm")
+
+[node name="LevelBoundaries" type="StaticBody2D" parent="Background"]
+scale = Vector2(2, 2)
+collision_layer = 4
+collision_mask = 15
+metadata/_edit_lock_ = true
+
+[node name="Wall" type="CollisionShape2D" parent="Background/LevelBoundaries"]
+position = Vector2(1280, 108)
+shape = SubResource("RectangleShape2D_ba0sk")
+
+[node name="Bottom" type="CollisionShape2D" parent="Background/LevelBoundaries"]
+position = Vector2(1280, 370)
+shape = SubResource("RectangleShape2D_agmep")
+
+[node name="Left" type="CollisionShape2D" parent="Background/LevelBoundaries"]
+position = Vector2(-10, 180)
+shape = SubResource("RectangleShape2D_2u058")
+
+[node name="Right" type="CollisionShape2D" parent="Background/LevelBoundaries"]
+position = Vector2(2570, 180)
+shape = SubResource("RectangleShape2D_2u058")
+
+[node name="Gate1" type="CollisionShape2D" parent="Background/LevelBoundaries"]
+position = Vector2(640, 288)
+shape = SubResource("RectangleShape2D_p53g1")
+
+[node name="Gate2" type="CollisionShape2D" parent="Background/LevelBoundaries"]
+position = Vector2(1280, 288)
+shape = SubResource("RectangleShape2D_p53g1")
+
+[node name="Gate3" type="CollisionShape2D" parent="Background/LevelBoundaries"]
+position = Vector2(1920, 288)
+shape = SubResource("RectangleShape2D_p53g1")
+
+[node name="Cones" type="StaticBody2D" parent="Background"]
+collision_layer = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Cones"]
+position = Vector2(4446, 576)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_y4x1x")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_0htkc")
+metadata/_edit_lock_ = true
+
+[node name="Player" parent="." instance=ExtResource("1_df7ow")]
+y_sort_enabled = true
+position = Vector2(93, 492)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+limit_left = 0
+limit_top = 0
+limit_right = 1280
+limit_bottom = 720
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 1.0
+drag_horizontal_enabled = true
+drag_left_margin = 0.7
+drag_right_margin = 0.0
+editor_draw_drag_margin = true
+
+[node name="EnemiesScreen1" type="Node2D" parent="."]
+y_sort_enabled = true
+metadata/_edit_lock_ = true
+
+[node name="MeleeEnemy" parent="EnemiesScreen1" instance=ExtResource("2_xau8b")]
+position = Vector2(885, 507)
+
+[node name="MeleeEnemy2" parent="EnemiesScreen1" instance=ExtResource("2_xau8b")]
+position = Vector2(1171, 574)
+
+[node name="MeleeEnemy3" parent="EnemiesScreen1" instance=ExtResource("2_xau8b")]
+position = Vector2(503, 659)
+
+[node name="EnemiesScreen2" type="Node2D" parent="."]
+y_sort_enabled = true
+metadata/_edit_lock_ = true
+
+[node name="RangedEnemy" parent="EnemiesScreen2" instance=ExtResource("4_uvh5w")]
+position = Vector2(2290, 629)
+
+[node name="RangedEnemy2" parent="EnemiesScreen2" instance=ExtResource("4_uvh5w")]
+position = Vector2(2085, 483)
+
+[node name="RangedEnemy3" parent="EnemiesScreen2" instance=ExtResource("4_uvh5w")]
+position = Vector2(1711, 528)
+
+[node name="EnemiesScreen3" type="Node2D" parent="."]
+y_sort_enabled = true
+metadata/_edit_lock_ = true
+
+[node name="MeleeEnemy" parent="EnemiesScreen3" instance=ExtResource("2_xau8b")]
+position = Vector2(2847, 615)
+
+[node name="MeleeEnemy2" parent="EnemiesScreen3" instance=ExtResource("2_xau8b")]
+position = Vector2(2846, 463)
+
+[node name="MeleeEnemy3" parent="EnemiesScreen3" instance=ExtResource("2_xau8b")]
+position = Vector2(3246, 618)
+
+[node name="MeleeEnemy4" parent="EnemiesScreen3" instance=ExtResource("2_xau8b")]
+position = Vector2(3298, 489)
+
+[node name="MeleeEnemy5" parent="EnemiesScreen3" instance=ExtResource("2_xau8b")]
+position = Vector2(3416, 550)
+
+[node name="RangedEnemy" parent="EnemiesScreen3" instance=ExtResource("4_uvh5w")]
+position = Vector2(2948, 545)
+
+[node name="RangedEnemy2" parent="EnemiesScreen3" instance=ExtResource("4_uvh5w")]
+position = Vector2(3626, 613)
+
+[node name="RangedEnemy3" parent="EnemiesScreen3" instance=ExtResource("4_uvh5w")]
+position = Vector2(3623, 487)
+
+[node name="EnemiesScreen4" type="Node2D" parent="."]
+
+[node name="Boss" parent="EnemiesScreen4" instance=ExtResource("6_ha3pv")]
+position = Vector2(4742, 550)
+metadata/_edit_lock_ = true
+
+[node name="Objects" type="Node2D" parent="."]
+y_sort_enabled = true
+metadata/_edit_lock_ = true
+
+[node name="Car" parent="Objects" instance=ExtResource("2_vaofa")]
+position = Vector2(682, 664)
+scale = Vector2(1.5, 1.5)
+
+[node name="Car2" parent="Objects" instance=ExtResource("2_vaofa")]
+position = Vector2(2354, 424)
+scale = Vector2(-1.5, 1.5)
+
+[node name="Trashbag" parent="Objects" instance=ExtResource("8_gp735")]
+position = Vector2(215, 607)
+
+[node name="Trashbag2" parent="Objects" instance=ExtResource("8_gp735")]
+position = Vector2(1064, 533)
+
+[node name="Trashbag3" parent="Objects" instance=ExtResource("8_gp735")]
+position = Vector2(1658, 635)
+
+[node name="Trashbag4" parent="Objects" instance=ExtResource("8_gp735")]
+position = Vector2(2083, 598)
+
+[node name="Trashbag5" parent="Objects" instance=ExtResource("8_gp735")]
+position = Vector2(3122, 504)
+
+[node name="Trashbag7" parent="Objects" instance=ExtResource("8_gp735")]
+position = Vector2(2667, 596)
+
+[node name="Trashbag6" parent="Objects" instance=ExtResource("8_gp735")]
+position = Vector2(3450, 647)
+
+[node name="TrashbagPile" parent="Objects" instance=ExtResource("9_ug1tx")]
+position = Vector2(457, 501)
+
+[node name="TrashbagPile2" parent="Objects" instance=ExtResource("9_ug1tx")]
+position = Vector2(1538, 508)
+
+[node name="TrashbagPile4" parent="Objects" instance=ExtResource("9_ug1tx")]
+position = Vector2(3039, 646)
+
+[node name="TrashbagPile5" parent="Objects" instance=ExtResource("9_ug1tx")]
+position = Vector2(3462, 491)
+
+[node name="TrashbagPile3" parent="Objects" instance=ExtResource("9_ug1tx")]
+position = Vector2(1332, 640)
+
+[node name="Trashbin" parent="Objects" instance=ExtResource("10_phlv3")]
+position = Vector2(214, 435)
+
+[node name="Trashbin2" parent="Objects" instance=ExtResource("10_phlv3")]
+position = Vector2(1012, 425)
+
+[node name="Trashbin3" parent="Objects" instance=ExtResource("10_phlv3")]
+position = Vector2(1715, 438)
+
+[node name="Trashbin4" parent="Objects" instance=ExtResource("10_phlv3")]
+position = Vector2(2697, 440)
+
+[node name="Trashbin5" parent="Objects" instance=ExtResource("10_phlv3")]
+position = Vector2(4038, 435)
+
+[node name="Projectiles" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[connection signal="projectile" from="EnemiesScreen2/RangedEnemy" to="." method="_on_ranged_enemy_projectile"]
+[connection signal="projectile" from="EnemiesScreen2/RangedEnemy2" to="." method="_on_ranged_enemy_projectile"]
+[connection signal="projectile" from="EnemiesScreen2/RangedEnemy3" to="." method="_on_ranged_enemy_projectile"]
+[connection signal="projectile" from="EnemiesScreen3/RangedEnemy" to="." method="_on_ranged_enemy_projectile"]
+[connection signal="projectile" from="EnemiesScreen3/RangedEnemy2" to="." method="_on_ranged_enemy_projectile"]
+[connection signal="projectile" from="EnemiesScreen3/RangedEnemy3" to="." method="_on_ranged_enemy_projectile"]
+[connection signal="boss_projectile" from="EnemiesScreen4/Boss" to="." method="_on_boss_boss_projectile"]

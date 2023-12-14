@@ -1,0 +1,63 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnwu7bhnmjc64"]
+
+[ext_resource type="Script" path="res://scenes/user_interface/pause_menu.gd" id="1_q1grt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fsubj"]
+bg_color = Color(0.101961, 0.101961, 0.101961, 1)
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q1grt")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.43
+anchor_top = 0.4
+anchor_right = 0.57
+anchor_bottom = 0.6
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fsubj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "== PAUSED =="
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../ExitGameButton")
+focus_neighbor_bottom = NodePath("../MainMenuButton")
+text = "Resume"
+
+[node name="MainMenuButton" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../ResumeButton")
+focus_neighbor_bottom = NodePath("../ExitGameButton")
+text = "Main Menu"
+
+[node name="ExitGameButton" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../MainMenuButton")
+focus_neighbor_bottom = NodePath(".")
+text = "Exit Game"
+
+[connection signal="pressed" from="Panel/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/ExitGameButton" to="." method="_on_exit_game_button_pressed"]
